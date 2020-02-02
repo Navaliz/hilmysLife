@@ -34,7 +34,7 @@ int main(){
     char working[50];
     int time;
     int finTime=0;
-    char buy;
+    int buy;
     char play;
 
     //game start
@@ -44,6 +44,7 @@ int main(){
      scanf("%c",&next);
     system("cls");*/
 
+    hilmy.mon=1000;
 
     while(hilmy.hea>0){
         printf("%s",TITLE);
@@ -98,9 +99,9 @@ int main(){
                 printf(" I have nothing :(, buy me one\n");}
             else{
                 toy=spinner+rubikCube+rcCar;
-                if (spinner>0){printf("  (s) Spinner     \n");}
-                if (rubikCube>0){printf("  (r) Rubik Cube  \n");}
-                if (rcCar>0){printf("  (c) RC Car      \n");}
+                if (spinner>0){printf("  (s) Spinner     (happiness +5)\n");}
+                if (rubikCube>0){printf("  (r) Rubik Cube  (happiness +20)\n");}
+                if (rcCar>0){printf("  (c) RC Car      (happiness +40)\n");}
                 if (toy==1){
                     printf("Let's play it!\n");}
                 else{printf("I wonder what should I play...\n");}
@@ -120,71 +121,126 @@ int main(){
         else if(action=='3'){
             printf(" \"Hei yo, whatsup?\".");
             time=3;
-            finTime+=time-2;
             while(time--){
                 printf(".");
                 Sleep(1000);}
+            time-=2;
+            finTime+=time;
             printf("\n\nThat was a good talk <press enter>");
             hilmy.soc+=5;
+            time-=1;
         }
 
         else if(action=='4'){
             printf(" \"du dudu dudu\".");
             time=3;
-            finTime+=time-2;
             while(time--){
                 printf(".");
                 Sleep(1000);}
+            time-=2;
+            finTime+=time;
             printf("\n\nIt's good to be clean :) <press enter>");
             hilmy.hyg+=10;
         }
 
         else if(action=='b'){
                 printf("=== WELCOME TO THE STORE ===\n What are you looking for?\n\n");
-                printf("  (f) Robot Food  \n");
-                if (spinner==0){printf("  (s) Spinner     $25\n");}
-                if (rubikCube==0){printf("  (r) Rubik Cube  $75\n");}
-                if (rcCar==0){printf("  (c) RC Car      $140\n");}
-                scanf("%c",&buy);
-                if (buy=='s'){spinner+=1;
-                    if(spinner>1){spinner-=1;
-                        printf("You already have a Spinner\n");}
-                    else{hilmy.mon-=25;
-                        if (hilmy.mon<0){hilmy.mon+=25;
+                printf("  (1) Robot Food  (health +5)      $5\n");
+                if (spinner==0){printf("  (2) Spinner     (happiness +5)   $25\n");}
+                if (rubikCube==0){printf("  (3) Rubik Cube  (happiness +20)  $75\n");}
+                if (rcCar==0){printf("  (4) RC Car      (happiness +40)  $140\n");}
+                scanf("%d",&buy);
+
+
+                if (buy==1){
+                    hilmy.mon-=5;
+                    robotFood+=1;
+                    if (hilmy.mon<0){
+                        hilmy.mon+=5;
+                        robotFood-=1;
+                        printf("You don't have enough money\n");
+                        }
+                    else{
+                        time=3;
+                        printf("buying Robot Food");
+                        while(time--){
+                            printf(".");
+                            Sleep(1000);
+                            }
+                            printf("\ndone. Thank you ^~^/  <press enter>");
+                        }
+                }
+                else if (buy==2){
+                    spinner+=1;
+                    if(spinner>1){
+                        spinner-=1;
+                        printf("You already have a Spinner\n");
+                        }
+                    else{
+                        hilmy.mon-=25;
+                        if (hilmy.mon<0){
+                            hilmy.mon+=25;
                             spinner-=1;
-                            printf("You don't have enough money\n");}
-                        else{time=3;
+                            printf("You don't have enough money\n");
+                            }
+                        else{
+                            time=3;
                             printf("buying Spinner");
                             while(time--){
                                 printf(".");
                                 Sleep(1000);
-                            }}}}
-                else if (buy=='r'){rubikCube+=1;
-                    if(rubikCube>1){rubikCube-=1;
-                        printf("You already have a Rubik Cube\n");}
-                    else{hilmy.mon-=75;
-                        if (hilmy.mon<0){hilmy.mon+=75;
+                                }
+                                printf("\ndone. Thank you ^-^/  <press enter>");
+                            }
+                            }
+                            }
+                else if (buy==3){
+                    rubikCube+=1;
+                    if(rubikCube>1){
+                        rubikCube-=1;
+                        printf("You already have a Rubik Cube\n");
+                        }
+                    else{
+                        hilmy.mon-=75;
+                        if (hilmy.mon<0){
+                            hilmy.mon+=75;
                             rubikCube-=1;
-                            printf("You don't have enough money\n");}
-                        else{time=3;
+                            printf("You don't have enough money\n");
+                            }
+                        else{
+                            time=3;
                             printf("buying Rubik Cube");
                             while(time--){
                                 printf(".");
                                 Sleep(1000);
-                            }}}}
-                else if (buy=='c'){rcCar+=1;
-                    if(rcCar>1){rcCar-=1;
-                        printf("You already have an RC Car\n");}
+                                }
+                                printf("\ndone. Thank you ^-^/  <press enter>");
+                            }
+                            }
+                            }
+                else if (buy==4){
+                    rcCar+=1;
+                    if(rcCar>1){
+                        rcCar-=1;
+                        printf("You already have an RC Car\n");
+                        }
                     else{hilmy.mon-=140;
-                        if (hilmy.mon<0){hilmy.mon+=140;
+                        if (hilmy.mon<0){
+                            hilmy.mon+=140;
                             rcCar-=1;
-                            printf("You don't have enough money\n");}
-                        else{time=3;
+                            printf("You don't have enough money\n");
+                            }
+                        else{
+                            time=3;
                             printf("buying RC Car");
                             while(time--){
                                 printf(".");
                                 Sleep(1000);
-                            }}}}
+                                }
+                                printf("\ndone. Thank you ^-^/  <press enter>");
+                            }
+                            }
+                            }
         }
 
         else if(action=='i'){
@@ -193,7 +249,7 @@ int main(){
                 printf("{empty}\n");
             }
             if (robotFood!=0){
-                printf(" - Robot Food: %d/n",robotFood);}
+                printf(" - Robot Food: %d\n",robotFood);}
             if (spinner!=0){
                 printf(" - Spinner\n");}
             if (rubikCube!=0){
@@ -202,6 +258,8 @@ int main(){
                 printf(" - RC Car\n");}
 
         }
+
+
 
 
 
@@ -267,24 +325,32 @@ int main(){
 
         //stats logic
         if(hilmy.hea<0){
-            hilmy.hea=0;};
+            hilmy.hea=0;
+            }
         if(hilmy.hea>100){
-            hilmy.hea=100;};
+            hilmy.hea=100;
+            }
 
         if(hilmy.hap<0){
-            hilmy.hap=0;};
+            hilmy.hap=0;
+            }
         if(hilmy.hap>100){
-            hilmy.hap=100;};
+            hilmy.hap=100;
+            }
 
         if(hilmy.hyg<0){
-            hilmy.hyg=0;};
+            hilmy.hyg=0;
+            }
         if(hilmy.hyg>100){
-            hilmy.hyg=100;};
+            hilmy.hyg=100;
+            }
 
         if(hilmy.soc<0){
-            hilmy.soc=0;};
+            hilmy.soc=0;
+            }
         if(hilmy.soc>100){
-            hilmy.soc=100;};
+            hilmy.soc=100;
+            }
 
 
 
