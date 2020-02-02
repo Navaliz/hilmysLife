@@ -35,7 +35,8 @@ int main(){
     int time;
     int finTime=0;
     int buy;
-    char play;
+    int play;
+    char playing[50];
 
     //game start
     /*printf("%s",TITLE);
@@ -93,31 +94,96 @@ int main(){
                 printf("\nMy work is done ^-^ <press enter>");
 
         }
+        // check
         else if(action=='2'){
             printf("My toys:\n");
             if (spinner==0&&rubikCube==0&&rcCar==0){
-                printf(" I have nothing :(, buy me one\n");}
+                printf(" I have nothing :(, buy me one\n");
+                scanf("%c",&next);}
             else{
                 toy=spinner+rubikCube+rcCar;
-                if (spinner>0){printf("  (s) Spinner     (happiness +5)\n");}
-                if (rubikCube>0){printf("  (r) Rubik Cube  (happiness +20)\n");}
-                if (rcCar>0){printf("  (c) RC Car      (happiness +40)\n");}
+                if (spinner>0){
+                	time = 3;
+					printf("  (1) Spinner     \n");
+					}
+                if (rubikCube>0){
+                	time = 4;
+					printf("  (2) Rubik Cube  \n");
+					}
+                if (rcCar>0){
+                	time = 6;
+					printf("  (3) RC Car      \n");
+					}
                 if (toy==1){
-                    printf("Let's play it!\n");}
-                else{printf("I wonder what should I play...\n");}
-            }
-            spinner+=1;
-            scanf("%c",&play);
-            if (play=='s'){
-                    if(spinner>0){
-
+                	printf("Let's play it!\n");
                     }
-
-            }
-
+                else{
+					printf("I wonder what should I play...\n");
+					}
+            
+            	scanf("%d",&play);
+            	if (play== 1){
+                    if(spinner>0){
+						hilmy.hap+=5;
+                    	strcpy(playing,"playing spinner");
+                    	
+                    	system("cls");
+            			printf("%s",TITLE);
+            			printf("%s",playing);
+            			while (time--){
+                			Sleep(1000);
+            				printf(".");
+            			}
+            			time-=2;
+            			finTime+=time;
+            
+                		printf("\n");
+                		printf("\nThat is very fun \\^o^/ <press enter>");
+                		scanf("%c",&next);
+                    }
+        		}else if (play== 2){
+                    if(rubikCube>0){
+						hilmy.hap+=10;
+                    	strcpy(playing,"playing Rubik Cube");
+						
+						system("cls");
+            			printf("%s",TITLE);
+            			printf("%s",playing);
+            			while (time--){
+                			Sleep(1000);
+            				printf(".");
+            			}
+            			time-=2;
+            			finTime+=time;
+            
+                		printf("\n");
+                		printf("\nThat is very fun \\^o^/ <press enter>");
+						scanf("%c",&next);	
+                    }
+        		}else if (play== 3){
+        			if(rcCar>0){
+						hilmy.hap+=20;
+                    	strcpy(playing,"playing RC Car");
+                    	
+                    	system("cls");
+            			printf("%s",TITLE);
+            			printf("%s",playing);
+            			while (time--){
+                			Sleep(1000);
+            				printf(".");
+            			}
+            			time-=2;
+            			finTime+=time;
+            
+                		printf("\n");
+                		printf("\nThat is very fun \\^o^/ <press enter>");
+                		scanf("%c",&next);
+        			}
+        		} 
+			}
 
         }
-
+        // check
         else if(action=='3'){
             printf(" \"Hei yo, whatsup?\".");
             time=3;
